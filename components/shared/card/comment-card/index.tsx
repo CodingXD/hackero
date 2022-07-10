@@ -30,7 +30,7 @@ export default function CommentCard({
       <h3 className="cursor-pointer">{title}</h3>
       <div
         dangerouslySetInnerHTML={{ __html: text }}
-        className="prose-sm prose-stone"
+        className="prose-sm prose-zinc prose-a:text-blue-400 prose-a:hover:text-blue-700"
       />
       <div className="mt-5 ml-5 space-y-2">
         <CommentBox comments={innerComments} show_border={false} />

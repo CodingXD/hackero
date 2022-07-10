@@ -9,6 +9,7 @@ type Props = {
   author: string;
   tags?: string[];
   text?: string;
+  points?: number;
   innerComments: Comment[];
   type: "post" | "comment";
   show_border: boolean;

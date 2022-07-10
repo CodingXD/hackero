@@ -27,8 +27,9 @@ const Home: NextPage = () => {
         <title>Hackero</title>
         <meta name="description" content="Get hacker new posts" />
       </Head>
-      <div className="flex flex-col items-center justify-center mx-auto lg:mt-40 w-1/2">
+      <div className="flex flex-col items-start justify-center mx-auto md:mt-40 mt-5 md:w-1/2 px-4">
         {/* Search bar Begins */}
+        <h3 className="text-left">Find a post</h3>
         <div className="relative w-full rounded-md shadow-sm mb-5">
           <div className="absolute inset-y-0 left-0 pl-6 flex items-center pointer-events-none">
             <SearchIcon className="text-gray-500 sm:text-sm h-4 w-4" />
@@ -46,7 +47,7 @@ const Home: NextPage = () => {
         {/* Search bar Begins */}
 
         {/* Loading skeleton Begins */}
-        {isLoading && <SkeletonContainer count={6} />}
+        {isLoading && <SkeletonContainer count={6} layout="horizontal" />}
         {/* Loading skeleton Ends */}
 
         {/* Search results Begins */}
@@ -63,18 +64,16 @@ const Home: NextPage = () => {
 
         {/* Handling data display */}
         {!isLoading && data?.hits.length > 0 && (
-          <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-full gap-3 min-w-[32rem] max-w-7xl">
+          <div className="grid md:grid-cols-2 grid-cols-full md:gap-x-3 gap-y-3 lg:min-w-[32rem] lg:max-w-7xl mb-5">
             {data?.hits.map(
-              (
-                { title, created_at, _tags, author, objectID, story_title },
-                i
-              ) => (
+              ({ title, created_at, _tags, author, objectID, points }, i) => (
                 <Card
                   key={i}
                   id={objectID}
-                  title={title || story_title}
+                  title={title}
                   date={created_at}
                   author={author}
+                  points={points}
                   tags={_tags.filter((t) => validTags.includes(t))}
                   type="post"
                 />
